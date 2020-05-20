@@ -38,21 +38,6 @@ def merge(arrA, arrB):
         merged_arr[k] = arrB[j]
         k += 1
         j += 1
-    # counter = 0
-    # while len(merged_arr) == len(arrA) + len(arrB):
-    #     for i in arrA:
-    #         if arrA[i] <= arrB[i]:
-    #             merged_arr[i] = arrA[i]
-    #             #merged_arr[i+1] = arrB[i + 1]
-    #             print('hi')
-    #             counter += 1
-            
-    #         else:
-    #             merged_arr[i] = arrB[i]
-    #             #merged_arr[i+1] = arrA[i + 1]
-    #             print('hello')
-    #             counter += 1
-    # print(counter)
 
     return merged_arr
 
@@ -65,19 +50,30 @@ def merge(arrA, arrB):
 def merge_sort(arr):
     #first, divide in half until subarrays of 1
     print('arr:', arr)
+    arrA = []
+    arrB = []
     #can't sort a list of one
     if len(arr) < 2:
-        return arr
 
-    half_len = len(arr)//2
-    print('half len:', half_len)
-    arrA = arr[:half_len]
-    print('arrA:', arrA)
-    arrB = arr[half_len + 1 : len(arr)]
-    print('arrB;', arrB)
-    arr = merge(merge_sort(arrA), merge_sort(arrB))
+        #get the middle of the list
+        half_len = len(arr)//2
+        #get the left half
+        print('half len:', half_len)
+        arrA = arr[:half_len]
+        print('arrA:', arrA)
+         #get the right half
+        arrB = arr[half_len:]
+        print('arrB;', arrB)
+
+    #we want to keep doing this until our values have 
+    #individual arrays
+
+        merge_sort(arrA)
+        merge_sort(arrB)
+
     
-    #second, merge the lists together using functio
+    #second, merge the lists together using function
+    arr = merge(arrA, arrB)
 
     return arr
 
